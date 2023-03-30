@@ -17,7 +17,7 @@ import { FiShoppingCart } from "react-icons/fi";
 
 const data = {
   isNew: true,
- 
+
   price: 4.5,
   rating: 4.2,
   numReviews: 34,
@@ -59,50 +59,61 @@ const RatingProps = {
 function ProductAddToCart(props) {
   const { image, title, price, maxprice, handle, id } = props;
   return (
-    <Flex w="full" alignItems="center" justifyContent="center">
-      <Box
-        bg={useColorModeValue("white", "gray.800")}
-        maxW="3xs"
-        borderWidth="1px"
-        rounded="lg"
-        shadow="lg"
-        position="relative"
-      >
-        {data.isNew && (
-          <Circle
-            size="10px"
-            position="absolute"
-            top={2}
-            right={2}
-            bg="red.200"
+    <Box objectFit={"cover"} width={"100%"}>
+      <Flex alignItems="center" justifyContent="center">
+        <Box
+          bg={useColorModeValue("white", "gray.800")}
+          width={"200px"}
+          borderWidth="1px"
+          rounded="lg"
+          shadow="lg"
+          position="relative"
+
+        >
+          {data.isNew && (
+            <Circle
+              size="10px"
+              position="absolute"
+              top={2}
+              right={2}
+              bg="red.200"
+            />
+          )}
+
+          <Image
+            src={image}
+            alt={`Picture of ${title}`}
+            roundedTop="sm"
+            width={"100%"}
+            maxH={"250"}
+            overflow="hidden"
+            objectFit="cover"
+            transform="scale(1.0)"
+            transition="0.3s ease-in-out"
+            _hover={{
+              transform: "scale(1.05)",
+            }}
           />
-        )}
 
-        <Image
-          src={image}
-          alt={`Picture of ${title}`}
-          roundedTop="sm"
-        />
-
-        <Box p="6">
-          <Box d="flex" alignItems="baseline">
-            {data.isNew && (
-              <Badge rounded="full" px="2" fontSize="0.8em" colorScheme="red">
-                New
-              </Badge>
-            )}
-          </Box>
-          <Flex mt="1" justifyContent="space-between" alignContent="center">
-            <Box
-              fontSize="2xl"
-              fontWeight="semibold"
-              as="h4"
-              lineHeight="tight"
-              isTruncated
-            >
-              {title}
+          <Box p="6">
+            <Box d="flex" alignItems="baseline">
+              {data.isNew && (
+                <Badge rounded="full" px="2" fontSize="0.8em" colorScheme="red">
+                  New
+                </Badge>
+              )}
             </Box>
-            <Tooltip
+            <Flex mt="1" justifyContent="space-between" alignContent="center">
+              <Box
+                fontSize="xs"
+                fontWeight="semibold"
+                as="h4"
+                lineHeight="tight"
+                isTruncated
+              >
+                {title}
+              </Box>
+              {/* <Tooltip
               label="Add to cart"
               bg="white"
               placement={"top"}
@@ -112,28 +123,36 @@ function ProductAddToCart(props) {
               <chakra.a href={"#"} display={"flex"}>
                 <Icon as={FiShoppingCart} h={7} w={7} alignSelf={"center"} />
               </chakra.a>
-            </Tooltip>
-          </Flex>
+            </Tooltip> */}
+            </Flex>
 
-          <Flex justifyContent="space-between" alignContent="center">
-            {/* <Rating rating={data.rating} numReviews={data.numReviews} /> */}
-            <Box fontSize="2xl" color={useColorModeValue("gray.800", "white")}>
-            <Flex justifyContent={"space-between"}>
-              <Box as="span" color={"gray.600"} fontSize="lg">
-              ₹{price}
-              
+            <Flex justifyContent="space-between" alignContent="center">
+              {/* <Rating rating={data.rating} numReviews={data.numReviews} /> */}
+              <Box
+                fontSize="2xl"
+                color={useColorModeValue("gray.800", "white")}
+              >
+                <Flex justifyContent={"space-between"}>
+                  <Box as="span" color={"gray.600"} fontSize="lg">
+                    ₹{price}
+                  </Box>
+                  <Spacer />
+                  <Box
+                    as="span"
+                    color={"gray.600"}
+                    fontSize="lg"
+                    ml={"3"}
+                    textDecoration="line-through"
+                  >
+                    ₹{maxprice}
+                  </Box>
+                </Flex>
               </Box>
-              <Spacer/>
-              <Box as="span" color={"gray.600"} fontSize="lg" ml={"3"} textDecoration="line-through">
-              ₹{maxprice}
-              
-              </Box>
-              </Flex>
-            </Box>
-          </Flex>
+            </Flex>
+          </Box>
         </Box>
-      </Box>
-    </Flex>
+      </Flex>
+    </Box>
   );
 }
 

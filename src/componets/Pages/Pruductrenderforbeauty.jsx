@@ -30,7 +30,7 @@ const getdata = (param,params={}) => {
    
   return axios.get(`http://localhost:8080/${param}`,{
     params:{
-        
+        category:params.category,
         _page:params._page,
         _limit:params._limit,
         _sort:params.sort,
@@ -40,50 +40,54 @@ const getdata = (param,params={}) => {
   });
 };
 
-export default function Productranderpage({param}) {
+export default function Pruductrenderforbeauty({param,category,q}) {
+    console.log('Pruductrender',param,category,q);
+    const [product, setproduct] = useState([]);
+    const [searchParam,setsearchParams] =useSearchParams()
+    const [page,setpage]=useSearchParams()
+    console.log(page.get("page"))
+useEffect(()=>{
 
- 
-  const [product, setproduct] = useState([]);
-  const [page,setpage]=useSearchParams()
-  console.log(page.get("page"))
 
+},[searchParam,category])
   const fetchdata = async () => {
     try {
-      let params={
-        _page:page.get("page"),
-        _limit:15,
-        sort:"discountedPrice",
-        order:"asc",
-       
-    }
-  
-  let data = await getdata(param,params);
-    
+        let params={
+            _page:page.get("page")||1,
+            _limit:15,
+            sort:"discountedPrice",
+            order:"asc",
+            category:category
+        }
+        // setsearchParams(params)
+      let data = await getdata(param,params);
+     
       let mapeddata = data.data.map((pro,i) => { 
         // console.log(pro.id,pro.image[0]);
         return {
-          image: pro.images[0],
-          title: pro.title,
-          price: pro.price,
-          maxprice: pro.price_max,
-          handle: pro.handle,
+          image: pro.image,
+          title: pro.product,
+          price: pro.discountedPrice||200,
+          maxprice: pro.maxprice||50+(+pro.discountedPrice)||599,
+          handle: pro.brand,
           id: pro.id||i+1,
+          category:pro.category||"women"
         };
       });
     
-      setproduct(mapeddata);
-    } catch (error) {
-      console.log(error)
-    }
+    
+      setproduct(mapeddata.filter((itemdata=>itemdata.image)));
+      setproduct(mapeddata.filter((itemdata=>category.include(itemdata.category))));
+    } catch (error) {}
   };
   useEffect(() => {
     fetchdata();
-  }, [param,page]);
+  }, [param,category,q,page]);
 
   return (
     <>
-      <Center>
-      <SimpleGrid  columns={{ base: '1',sm:2, md: '3', lg: '4',xl:"4" }} columnGap={20} rowGap={5} >
+       <Center>
+      <SimpleGrid  columns={{ base: '1',sm:2, md: '3', lg: '4',xl:"4" }} columnGap={10} rowGap={5} >
     
        
           {product.map((pro) => {

@@ -9,6 +9,7 @@ import Men from './Pages/Productpage.jsx'
 import Studio from './Pages/Studio'
 import Women from './Pages/Productranderpage'
 
+
 export default function Allroutes() {
   return (
     <Routes>
@@ -16,9 +17,10 @@ export default function Allroutes() {
         <Route path='/productpage/:param' element={<Productpage/>}/>
         {/* <Route path='/women/:param' element={<Women/>}/>
         <Route path='/kids/:param' element={<Kids/>}/> */}
-        <Route path='/beauty' element={<Beauty/>}/>
+        <Route path='/beauty/:beauty' element={<Beauty/>}/>
         <Route path='/homeliving' element={<Homeliving/>}/>
         <Route path='/studio' element={<Studio/>}/>
+ 
 
         
     </Routes>

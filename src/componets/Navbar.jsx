@@ -123,7 +123,7 @@ export default function Navbar() {
                   </Text>
                 </Stack>
               </NavLink>
-              <NavLink to="/beauty">
+              <NavLink to="/beauty/beautyproduct">
                 <Stack>
                   <Text
                     as="sub"

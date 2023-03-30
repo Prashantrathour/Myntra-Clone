@@ -23,7 +23,7 @@ import {
 } from "@chakra-ui/react";
 export default function Split() {
   return (
-    <Box>
+    <Box  display={{ base: 'none', md: 'none', lg: 'flex' }}>
     <Flex width={"full"} justifyContent={"space-between"}>
     <HStack>
       <Box ml={3}>
