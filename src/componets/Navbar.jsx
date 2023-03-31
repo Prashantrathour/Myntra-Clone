@@ -18,7 +18,6 @@ import {
   MenuItem,
   MenuDivider,
   useDisclosure,
-  useColorModeValue,
   Stack,
   Heading,
   Img,
@@ -31,6 +30,7 @@ import {
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon, SearchIcon } from "@chakra-ui/icons";
 import { NavLink } from "react-router-dom";
+import Loginmenu from "./Pages/Logindropdown";
 const Links = ["Dashboard", "Projects", "Team"];
 
 export default function Navbar() {
@@ -75,7 +75,6 @@ export default function Navbar() {
               as={"nav"}
               spacing={4}
               display={{ base: "none", xl: "flex", md: "none" }}
-              
             >
               {" "}
               <NavLink
@@ -168,21 +167,7 @@ export default function Navbar() {
                   width={"sm"}
                 />
               </Flex>
-              <Flex direction={"column"}>
-                <IconButton
-                  color={"blackAlpha"}
-                  bg="whiteAlpha.100"
-                  icon={
-                    <Avatar
-                      src="https://cdn-icons-png.flaticon.com/128/126/126486.png"
-                      size="sm"
-                    />
-                  }
-                />
-                <Text size="sm" pt={-10} fontWeight="bold" as={"sub"}>
-                  Profile
-                </Text>
-              </Flex>
+             
 
               <Spacer />
               <Flex direction={"column"}>
@@ -218,6 +203,12 @@ export default function Navbar() {
                   {"        Beg"}
                 </Text>
               </Flex>
+              <Flex direction={"column"}>
+               <Loginmenu/>
+                <Text size="sm" pt={-10} fontWeight="bold" as={"sub"}>
+                  Profile
+                </Text>
+              </Flex>
             </Flex>
           </HStack>
         </Flex>
@@ -233,7 +224,9 @@ export default function Navbar() {
         ) : null}
       </Box>
 
-      <Box p={4}></Box>
+      <Box p={4}>
+      
+      </Box>
     </>
   );
 }

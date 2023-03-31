@@ -1,88 +1,191 @@
-import { Box, Heading, Flex, List, ListItem, Link, Text, Image } from '@chakra-ui/react';
+import {
+  Box,
+  Heading,
+  Flex,
+  List,
+  ListItem,
+  Link,
+  Text,
+  Image,
+  Center,
+  HStack,
+  VStack,
+  Divider,
+  Spacer,
+} from "@chakra-ui/react";
 
-const Footer = () => {
-  return (
+const Footer = () => (
+  <Box
+    as="footer"
+    bg="white"
+    borderTop="1px solid"
+    borderColor="gray.300"
+    py="2.5rem"
+    fontSize="0.875rem"
+  >
     <Box
-      as="footer"
-      bg="white"
-      borderTop="1px solid"
+      maxW="64rem"
+      marginX="auto"
+      pb="2rem"
+      mb="1.5rem"
+      px={10}
+      borderBottom="1px solid"
       borderColor="gray.300"
-      py="2.5rem"
-      fontSize="0.875rem"
     >
-      <Box
-        maxW="64rem"
-        marginX="auto"
-        pb="2rem"
-        mb="1.5rem"
-        px={10}
-        borderBottom="1px solid"
-        borderColor="gray.300"
-      >
-        <Flex flexWrap="wrap" alignItems="start" justify="space-between">
-          <Box w={{ base: '100%', sm: '50%', md: 'max-content' }} mb={{ base: '1.5rem', lg: '0' }}>
-            <Heading as="h5" color="gray.700" mb="0.5rem" fontSize="0.875rem" fontWeight="600">
-              INFINITE
-            </Heading>
-            <List lineHeight="2" justifyContent="center">
-              <LinkItem text="Careers" />
-              <LinkItem text="News" />
-              <LinkItem text="Policies" />
-              <LinkItem text="Help" />
-              <LinkItem text="Diversity & Belonging" />
-            </List>
-          
-            <Heading as="h5" color="gray.700" mb="0.5rem" fontSize="0.875rem" fontWeight="600">
-              Online Shoping
-            </Heading>
-            <List lineHeight="2" justifyContent="center">
-              <LinkItem text="Men" />
-              <LinkItem text="Women" />
-              <LinkItem text="Home & Living" />
-              <LinkItem text="Beauty" />
-              <LinkItem text="Gift Cards" />
-              <LinkItem text="Myntra Insiders" />
-            </List>
-          </Box>
-          <Box w={{ base: '100%', sm: '50%', md: 'max-content' }} mb={{ base: '1.5rem', lg: '0' }}>
-            <Heading as="h5" color="gray.700" mb="0.5rem" fontSize="0.875rem" fontWeight="600">
+      <Flex flexWrap="wrap" alignItems="start" justify="space-between">
+        <Box
+          w={{ base: "100%", sm: "50%", md: "max-content" }}
+          mb={{ base: "1.5rem", lg: "0" }}
+        >
+          <Heading
+            as="h5"
+            color="gray.700"
+            mb="0.5rem"
+            fontSize="0.875rem"
+            fontWeight="600"
+          >
+            INFINITE
+          </Heading>
+          <List lineHeight="2" justifyContent="center">
+            <LinkItem text="Careers" />
+            <LinkItem text="News" />
+            <LinkItem text="Policies" />
+            <LinkItem text="Help" />
+            <LinkItem text="Diversity & Belonging" />
+          </List>
+
+          <Heading
+            as="h5"
+            color="gray.700"
+            mb="0.5rem"
+            fontSize="0.875rem"
+            fontWeight="600"
+          >
+            Online Shoping
+          </Heading>
+          <List lineHeight="2" justifyContent="center">
+            <LinkItem text="Men" />
+            <LinkItem text="Women" />
+            <LinkItem text="Home & Living" />
+            <LinkItem text="Beauty" />
+            <LinkItem text="Gift Cards" />
+            <LinkItem text="Myntra Insiders" />
+          </List>
+        </Box>
+        <Box
+          w={{ base: "100%", sm: "50%", md: "max-content" }}
+          mb={{ base: "1.5rem", lg: "0" }}
+        >
+          <Heading
+            as="h5"
+            color="gray.700"
+            mb="0.5rem"
+            fontSize="0.875rem"
+            fontWeight="600"
+          >
             CUSTOMER POLICIES
-            </Heading>
-            <List lineHeight="2">
-              <LinkItem text="Contect Us" />
-              <LinkItem text="FAQ" />
-              <LinkItem text="T&C" />
-              <LinkItem text="Terms Of Use" />
-              <LinkItem text="Trake Order" />
-              <LinkItem text="Cancellation" isTag={true} tagText="New" />
-              <LinkItem text="Return" />
-            </List>
-          </Box>
-          <Box w={{ base: '100%', sm: '50%', md: 'max-content' }} mb={{ base: '1.5rem', lg: '0' }}>
-            <Heading as="h5" color="gray.700" mb="0.5rem" fontSize="0.875rem" fontWeight="600">
-            CUSTOMER POLICIES
-            </Heading>
-            <List lineHeight="2">
-              <LinkItem text="Why Host" />
-              <LinkItem text="Hospitality" />
-              <LinkItem text="Responsible Hosting" />
-              <LinkItem text="Community Center" />
-              <LinkItem text="Host an Experience" isTag={true} tagText="New" />
-              <LinkItem text="Open Homes" />
-              <LinkItem text="Donations" isTag={true} tagText="New" />
-            </List>
-          </Box>
-          <Box w={{ base: '100%', sm: '50%', md: 'max-content' }} mb={{ base: '1.5rem', lg: '0' }}>
-          <Box width={"15"}>
-            <Flex>
-                <Image src="https://constant.myntassets.com/web/assets/img/80cc455a-92d2-4b5c-a038-7da0d92af33f1539674178924-google_play.png" width={"sm"}></Image>
-                <Image src="https://constant.myntassets.com/web/assets/img/bc5e11ad-0250-420a-ac71-115a57ca35d51539674178941-apple_store.png" width={"sm"}></Image>
+          </Heading>
+          <List lineHeight="2">
+            <LinkItem text="Contect Us" />
+            <LinkItem text="FAQ" />
+            <LinkItem text="T&C" />
+            <LinkItem text="Terms Of Use" />
+            <LinkItem text="Trake Order" />
+            <LinkItem text="Cancellation" isTag={true} tagText="New" />
+            <LinkItem text="Return" />
+          </List>
+        </Box>
+        <Box
+          w={{ base: "100%", sm: "50%", md: "max-content" }}
+          mb={{ base: "1.5rem", lg: "0" }}
+        >
+          <Flex flexDirection={"column"}>
+            <Flex gap={3}>
+              <Image
+                src="https://constant.myntassets.com/web/assets/img/6c3306ca-1efa-4a27-8769-3b69d16948741574602902452-original.png"
+                width={20}
+              ></Image>
+              <Box width={"150px"}>
+                <Heading
+                  as="h5"
+                  color="gray.700"
+                  mb="0.5rem"
+                  fontSize="0.875rem"
+                  fontWeight="600"
+                >
+                  <Heading as={"strong"} mb="0.5rem" fontSize="1rem">
+                    100% ORIGINAL{" "}
+                  </Heading>
+                        guarantee for all products at myntra.com
+                </Heading>
+              </Box>
             </Flex>
-          </Box>
+            <Flex gap={3}>
+              <Image
+                src="https://constant.myntassets.com/web/assets/img/ef05d6ec-950a-4d01-bbfa-e8e5af80ffe31574602902427-30days.png"
+                width={20}
+              ></Image>
+              <Box width={"150px"}>
+                <Heading
+                  as="h5"
+                  color="gray.700"
+                  mb="0.5rem"
+                  fontSize="0.875rem"
+                  fontWeight="600"
+                  
+                >
+                  <Heading as={"strong"} mb="0.5rem" fontSize="1rem">
+                    Return within 30days{" "}
+                  </Heading>
+                  <Text  
+                  color="gray.700"
+                  mb="0.5rem"
+                  fontSize="0.875rem"
+                  fontWeight="600" as={"span"}>of receiving your order</Text>
+                </Heading>
+              </Box>
+            </Flex>
+          </Flex>
+        </Box>
+        <Box
+          w={{ base: "100%", sm: "50%", md: "max-content" }}
+          mb={{ base: "1.5rem", lg: "0" }}
+        >
+          <VStack>
+            <Heading
+              as="h5"
+              color="gray.700"
+              mb="0.5rem"
+              fontSize="0.875rem"
+              fontWeight="600"
+            >
+              EXPERIENCE INFINITE APP ON MOBILE
+            </Heading>
+            <Box width={"150px"}>
+              <Flex>
+                <Image
+                  src="https://constant.myntassets.com/web/assets/img/bc5e11ad-0250-420a-ac71-115a57ca35d51539674178941-apple_store.png"
+                  width={"100%"}
+                ></Image>
+                <Image
+                  src="https://constant.myntassets.com/web/assets/img/80cc455a-92d2-4b5c-a038-7da0d92af33f1539674178924-google_play.png"
+                  width={"100%"}
+                ></Image>
+              </Flex>
+            </Box>
+            <Heading
+              as="h5"
+              color="gray.700"
+              mb="0.5rem"
+              fontSize="0.875rem"
+              fontWeight="600"
+            >
+              KEEP IN TOUCH
+            </Heading>
             <Flex justify="start" mb="0.5rem" alignItems="baseline">
               <Link href="#" mr="0.5rem">
                 <svg
-                  style={{ width: '1rem', height: '1rem' }}
+                  style={{ width: "1rem", height: "1rem" }}
                   fill="#008F94"
                   viewBox="0 0 32 32"
                   role="img"
@@ -97,7 +200,7 @@ const Footer = () => {
               </Link>
               <Link href="#" mr="0.5rem">
                 <svg
-                  style={{ width: '1rem', height: '1rem' }}
+                  style={{ width: "1rem", height: "1rem" }}
                   fill="#008F94"
                   viewBox="0 0 32 32"
                   role="img"
@@ -112,7 +215,7 @@ const Footer = () => {
               </Link>
               <Link href="#" mr="0.5rem">
                 <svg
-                  style={{ width: '1rem', height: '1rem' }}
+                  style={{ width: "1rem", height: "1rem" }}
                   fill="#008F94"
                   viewBox="0 0 24 24"
                   role="img"
@@ -131,27 +234,57 @@ const Footer = () => {
               <LinkItem text="Privacy" />
               <LinkItem text="Site Map" />
             </List>
-          </Box>
-        </Flex>
-      </Box>
-      <Flex maxW="64rem" mx="auto" alignItems="center" px={10}>
-        <svg
-          fill="#008F94"
-          style={{ width: '1.25rem', height: '1.25rem' }}
-          viewBox="0 0 1000 1000"
-          role="presentation"
-          aria-hidden="true"
-          focusable="false"
-        >
-          <path d="m499.3 736.7c-51-64-81-120.1-91-168.1-10-39-6-70 11-93 18-27 45-40 80-40s62 13 80 40c17 23 21 54 11 93-11 49-41 105-91 168.1zm362.2 43c-7 47-39 86-83 105-85 37-169.1-22-241.1-102 119.1-149.1 141.1-265.1 90-340.2-30-43-73-64-128.1-64-111 0-172.1 94-148.1 203.1 14 59 51 126.1 110 201.1-37 41-72 70-103 88-24 13-47 21-69 23-101 15-180.1-83-144.1-184.1 5-13 15-37 32-74l1-2c55-120.1 122.1-256.1 199.1-407.2l2-5 22-42c17-31 24-45 51-62 13-8 29-12 47-12 36 0 64 21 76 38 6 9 13 21 22 36l21 41 3 6c77 151.1 144.1 287.1 199.1 407.2l1 1 20 46 12 29c9.2 23.1 11.2 46.1 8.2 70.1zm46-90.1c-7-22-19-48-34-79v-1c-71-151.1-137.1-287.1-200.1-409.2l-4-6c-45-92-77-147.1-170.1-147.1-92 0-131.1 64-171.1 147.1l-3 6c-63 122.1-129.1 258.1-200.1 409.2v2l-21 46c-8 19-12 29-13 32-51 140.1 54 263.1 181.1 263.1 1 0 5 0 10-1h14c66-8 134.1-50 203.1-125.1 69 75 137.1 117.1 203.1 125.1h14c5 1 9 1 10 1 127.1.1 232.1-123 181.1-263.1z"></path>
-        </svg>
-        <Text color="gray.600" fontSize="0.875rem" pl="0.5rem">
-          &copy; 2019 company, Inc. All rights reserved.
-        </Text>
+          </VStack>
+        </Box>
       </Flex>
+      <Box marginTop={4}>
+        <Heading
+          as="h5"
+          color="gray.700"
+          mb="0.5rem"
+          fontSize="0.875rem"
+          fontWeight="600"
+        >
+          RECENT POPULAR SEARCH
+        </Heading>
+        <Divider variant={"dashed"} orientation="horizontal" />
+        <Box>
+          <Text color="gray.600" fontSize="0.875rem" pl="0.5rem">
+            Makeup | Dresses For Girls | T-Shirts | Sandals | Headphones |
+            Babydolls | Blazers | For | Men | Handbags | Ladies Watches | Bags |
+            Sport | Shoes | Reebok | Shoes | Puma | Shoes | Boxers | Wallets
+            Tops | Earrings | Fastrack | Watches | Kurtis | Nike | Smart |
+            Watches | Titan Watches | Designer | Blouse | Gowns | Rings |
+            Cricket | Shoes | Forever | 21 | Eye Makeup | Photo | Frames |
+            Punjabi | Suits | Bikini | Myntra | Fashion | Show | Lipstick Saree
+            | Watches | Dresses | Lehenga | Nike | Shoes | Goggles | Bras | Suit
+            Chinos | Shoes | Adidas | Shoes | Woodland | Shoes | Jewellery |
+            Designers | Sarees |
+          </Text>
+        </Box>
+      </Box>
     </Box>
-  );
-};
+
+    <Flex maxW="64rem" mx="auto" alignItems="center" px={10}>
+      <svg
+        fill="#008F94"
+        style={{ width: "1.25rem", height: "1.25rem" }}
+        viewBox="0 0 1000 1000"
+        role="presentation"
+        aria-hidden="true"
+        focusable="false"
+      >
+        <path d="m499.3 736.7c-51-64-81-120.1-91-168.1-10-39-6-70 11-93 18-27 45-40 80-40s62 13 80 40c17 23 21 54 11 93-11 49-41 105-91 168.1zm362.2 43c-7 47-39 86-83 105-85 37-169.1-22-241.1-102 119.1-149.1 141.1-265.1 90-340.2-30-43-73-64-128.1-64-111 0-172.1 94-148.1 203.1 14 59 51 126.1 110 201.1-37 41-72 70-103 88-24 13-47 21-69 23-101 15-180.1-83-144.1-184.1 5-13 15-37 32-74l1-2c55-120.1 122.1-256.1 199.1-407.2l2-5 22-42c17-31 24-45 51-62 13-8 29-12 47-12 36 0 64 21 76 38 6 9 13 21 22 36l21 41 3 6c77 151.1 144.1 287.1 199.1 407.2l1 1 20 46 12 29c9.2 23.1 11.2 46.1 8.2 70.1zm46-90.1c-7-22-19-48-34-79v-1c-71-151.1-137.1-287.1-200.1-409.2l-4-6c-45-92-77-147.1-170.1-147.1-92 0-131.1 64-171.1 147.1l-3 6c-63 122.1-129.1 258.1-200.1 409.2v2l-21 46c-8 19-12 29-13 32-51 140.1 54 263.1 181.1 263.1 1 0 5 0 10-1h14c66-8 134.1-50 203.1-125.1 69 75 137.1 117.1 203.1 125.1h14c5 1 9 1 10 1 127.1.1 232.1-123 181.1-263.1z"></path>
+      </svg>
+      <Text color="gray.600" fontSize="0.875rem" pl="0.5rem">
+        &copy; 2023 company, Inc. All rights reserved.
+      </Text>
+      <Text color="gray.600" fontSize="0.875rem" pl="0.5rem">
+        WWW.infinite.com
+      </Text>
+    </Flex>
+  </Box>
+);
 
 let LinkItemProps = {
   text: "hi",
@@ -159,15 +292,15 @@ let LinkItemProps = {
   tagText: "tata",
 };
 
-const LinkItem = ( LinkItemProps) => {
-    const { text, isTag = false, tagText }=LinkItemProps
+const LinkItem = (LinkItemProps) => {
+  const { text, isTag = false, tagText } = LinkItemProps;
   return (
     <ListItem display="flex">
       <Link
         fontWeight="600"
         href="#"
         color="rgba(113, 128, 150, 1)"
-        _hover={{ color: 'green.600' }}
+        _hover={{ color: "pink.600" }}
       >
         {text}
       </Link>

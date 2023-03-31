@@ -1,6 +1,7 @@
 import { Box, Button, Center, Container, Flex, Heading, HStack, Text, VStack } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
+import Footer from "../Footer";
 import Navbar2 from "../images";
 import Navbar from "../Navbar";
 import {PaginationRounded }from "../Pagination";
@@ -42,6 +43,7 @@ let k=1
           </Box>
         </VStack>
       </Center>
+      <Footer/>
     </>
     
   );

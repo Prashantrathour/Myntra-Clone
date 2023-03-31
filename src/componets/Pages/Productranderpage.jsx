@@ -83,7 +83,7 @@ export default function Productranderpage({param}) {
   return (
     <>
       <Center>
-      <SimpleGrid  columns={{ base: '1',sm:2, md: '3', lg: '4',xl:"4" }} columnGap={20} rowGap={5} >
+      <SimpleGrid  columns={{ base: '1',sm:2, md: '3', lg: '4',xl:"4" }} columnGap={10} rowGap={5} >
     
        
           {product.map((pro) => {

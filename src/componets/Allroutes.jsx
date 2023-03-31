@@ -8,6 +8,9 @@ import Productpage from './Pages/Productpage.jsx'
 import Men from './Pages/Productpage.jsx'
 import Studio from './Pages/Studio'
 import Women from './Pages/Productranderpage'
+import Login from './Pages/Login'
+import Singleproductpage from './Pages/Singleproductpage'
+import PrivateRoute from './Contextprovider/PrivateRoute'
 
 
 export default function Allroutes() {
@@ -17,9 +20,14 @@ export default function Allroutes() {
         <Route path='/productpage/:param' element={<Productpage/>}/>
         {/* <Route path='/women/:param' element={<Women/>}/>
         <Route path='/kids/:param' element={<Kids/>}/> */}
-        <Route path='/beauty/:beauty' element={<Beauty/>}/>
+        <Route path='/beauty/:beauty' element={
+<PrivateRoute> <Beauty/></PrivateRoute>
+       
+        }/>
         <Route path='/homeliving' element={<Homeliving/>}/>
         <Route path='/studio' element={<Studio/>}/>
+        <Route path="/login" element={<Login/>}/>
+        <Route path="/Singleproductpage/:id" element={<Singleproductpage/>}/>
  
 
         

@@ -14,6 +14,7 @@ import Div from "./Div";
 import { bestbuy, bestdeal, giftcard, groming, influe, kids, Luxe, NEWNESS, roundimage, saleced, season, topbrand } from "./images1.jsx";
 import { toppics, bestexclusive } from "./images1.jsx";
 import Cart from "./Cart";
+import Footer from "../Footer";
 console.log(bestdeal);
 
 export default function Home() {
@@ -154,6 +155,7 @@ export default function Home() {
           </CardBody>
         </Card>
       </Box>
+      <Footer/>
     </>
   );
 }

@@ -11,6 +11,9 @@ import {
   chakra,
   Tooltip,
   Spacer,
+  Link,
+  Button,
+  Center,
 } from "@chakra-ui/react";
 import { BsStar, BsStarFill, BsStarHalf } from "react-icons/bs";
 import { FiShoppingCart } from "react-icons/fi";
@@ -63,12 +66,11 @@ function ProductAddToCart(props) {
       <Flex alignItems="center" justifyContent="center">
         <Box
           bg={useColorModeValue("white", "gray.800")}
-          width={"200px"}
+          width={"230px"}
           borderWidth="1px"
           rounded="lg"
           shadow="lg"
           position="relative"
-
         >
           {data.isNew && (
             <Circle
@@ -103,28 +105,6 @@ function ProductAddToCart(props) {
                 </Badge>
               )}
             </Box>
-            <Flex mt="1" justifyContent="space-between" alignContent="center">
-              <Box
-                fontSize="xs"
-                fontWeight="semibold"
-                as="h4"
-                lineHeight="tight"
-                isTruncated
-              >
-                {title}
-              </Box>
-              {/* <Tooltip
-              label="Add to cart"
-              bg="white"
-              placement={"top"}
-              color={"gray.800"}
-              fontSize={"1.2em"}
-            >
-              <chakra.a href={"#"} display={"flex"}>
-                <Icon as={FiShoppingCart} h={7} w={7} alignSelf={"center"} />
-              </chakra.a>
-            </Tooltip> */}
-            </Flex>
 
             <Flex justifyContent="space-between" alignContent="center">
               {/* <Rating rating={data.rating} numReviews={data.numReviews} /> */}
@@ -149,6 +129,15 @@ function ProductAddToCart(props) {
                 </Flex>
               </Box>
             </Flex>
+            <Center>
+              <Flex>
+                {" "}
+                <Button bg="red">
+                  {" "}
+                  <Link to="/Singleproductpage/1">ADD TO CART </Link>
+                </Button>
+              </Flex>
+            </Center>
           </Box>
         </Box>
       </Flex>

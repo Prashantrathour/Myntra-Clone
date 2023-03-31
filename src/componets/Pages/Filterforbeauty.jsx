@@ -9,6 +9,8 @@ import {
   Heading,
   List,
   ListItem,
+  Radio,
+  RadioGroup,
   Stack,
   useFormControlStyles,
   VStack,
@@ -52,14 +54,14 @@ searchq(search.get("q"))
                   Categories
                 </Heading>
                 <Divider pb={3} pt={3} />
-                <CheckboxGroup colorScheme="pink" spacing="1" defaultValue={check} onChange={(e)=>console.log(e)}>
+                <RadioGroup colorScheme="pink" spacing="1">
                   <Stack direction={"column"}>
-                    <Checkbox value={"Men"} name={"Men"} onChange={Change} >Men</Checkbox>
-                    <Checkbox value={"Women"} name={"Women"} onChange={Change}>Women</Checkbox>
-                    <Checkbox value={"Boys"} name={"Boys"} onChange={Change}>Boys</Checkbox>
-                    <Checkbox value={"Girls"} name={"Girls"} onChange={Change}>Girls</Checkbox>
+                    <Radio value={"Men"} name={"Men"} onChange={Change} >Men</Radio>
+                    <Radio value={"Women"} name={"Women"} onChange={Change}>Women</Radio>
+                    <Radio value={"Boys"} name={"Boys"} onChange={Change}>Boys</Radio>
+                    <Radio value={"Girls"} name={"Girls"} onChange={Change}>Girls</Radio>
                   </Stack>
-                </CheckboxGroup>
+                </RadioGroup>
               </Box>
               <Box>
                 <Heading as={"sub"} size={"xs"}>
