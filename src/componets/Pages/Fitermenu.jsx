@@ -1,4 +1,5 @@
 import React from "react";
+import style from "./filter.module.css"
 import {
   Box,
   Center,
@@ -7,6 +8,7 @@ import {
   CheckboxIcon,
   Divider,
   Heading,
+  Input,
   List,
   ListItem,
   Stack,
@@ -16,6 +18,7 @@ import {
 export default function Fitermenu() {
   return (
     <Box width={"-moz-fit-content"} >
+    <Input placeholder="Search category"/>
     <Center>
       <VStack width={"full"} >
         <Stack boxShadow="base" p="6" rounded="md" bg="white">

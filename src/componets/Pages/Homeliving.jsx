@@ -1,5 +1,6 @@
 import { Box, Image, Text, Heading, Button, NumberInput, NumberInputField, NumberInputStepper, NumberIncrementStepper, NumberDecrementStepper } from "@chakra-ui/react";
 import MegaMenu from "./Megadropdown";
+import CartPage from "./Cartpage";
 
 function ProductDetails() {
   return (
@@ -27,6 +28,7 @@ function ProductDetails() {
           <Button colorScheme="blue" size="lg" mb={{ base: "2rem", md: "0" }}>Add to Cart</Button>
         </Box>
       </Box>
+      <CartPage/>
     </Box>
   );
 }

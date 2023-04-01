@@ -27,7 +27,7 @@ export default function Productpage() {
     <>
       <Navbar />
       <Center>
-        <VStack>
+        <VStack mt={10} >
           <Box>
             <Split />
             <Flex justifyContent={"space-between"} gap={25}>

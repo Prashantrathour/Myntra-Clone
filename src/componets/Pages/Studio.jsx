@@ -7,6 +7,7 @@ export default function Studio() {
     <>
         <Navbar/>
         <Heading>Studio</Heading>
+        
     </>
   )
 }

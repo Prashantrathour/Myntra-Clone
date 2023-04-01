@@ -21,7 +21,8 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <CaptionCarousel  />
+      <CaptionCarousel   />
+      <Box zIndex={-1} position={"relative"}>
       <Box mt={"-16"}>
         <Heading ml={2}>DEAL OF THE DAY</Heading>
         <Card>
@@ -154,6 +155,7 @@ export default function Home() {
             </SimpleGrid>
           </CardBody>
         </Card>
+      </Box>
       </Box>
       <Footer/>
     </>

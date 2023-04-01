@@ -16,7 +16,7 @@ export default function Megadropdown() {
           </Box>
           <Box display={{ base: "none", md: "block" }}>
             <Flex>
-              <Link mx="1rem">Home</Link>
+              <Link to="/">Home</Link>
               <Link mx="1rem">About</Link>
               <Link mx="1rem">Contact</Link>
               <Menu>

@@ -14,55 +14,61 @@ import {
   Link,
   Button,
   Center,
+  Heading,
 } from "@chakra-ui/react";
 import { BsStar, BsStarFill, BsStarHalf } from "react-icons/bs";
 import { FiShoppingCart } from "react-icons/fi";
-
+import { NavLink } from "react-router-dom";
+function getRandomArbitrary(min, max) {
+  return Math.random() * (max - min) + min;
+}
 const data = {
   isNew: true,
 
   price: 4.5,
   rating: 4.2,
-  numReviews: 34,
+  numReviews:Math.floor(getRandomArbitrary(20, 50))  ,
 };
 
 const RatingProps = {
   rating: 1,
   numReviews: 1,
 };
-// function Rating(RatingProps) {
-//     const { rating, numReviews }= RatingProps
-//   return (
-//     <Box d="flex" alignItems="center">
-//       {Array(5)
-//         .fill('')
-//         .map((_, i) => {
-//           const roundedRating = Math.round(rating * 2) / 2;
-//           if (roundedRating - i >= 1) {
-//             return (
-//               <BsStarFill
-//                 key={i}
-//                 style={{ marginLeft: '1' }}
-//                 color={i < rating ? 'teal.500' : 'gray.300'}
-//               />
-//             );
-//           }
-//           if (roundedRating - i === 0.5) {
-//             return <BsStarHalf key={i} style={{ marginLeft: '1' }} />;
-//           }
-//           return <BsStar key={i} style={{ marginLeft: '1' }} />;
-//         })}
-//       <Box as="span" ml="2" color="gray.600" fontSize="sm">
-//         {numReviews} review{numReviews > 1 && 's'}
-//       </Box>
-//     </Box>
-//   );
-// }
+function Rating(RatingProps) {
+    const { rating, numReviews }= RatingProps
+  return (
+    <Flex d="flex" alignItems="center" flexDirection={"row"}>
+      {Array(5)
+        .fill('')
+        .map((_, i) => {
+          const roundedRating = Math.round(rating * 2) / 2;
+          if (roundedRating - i >= 1) {
+            return (
+              <BsStarFill
+                key={i}
+                style={{ marginLeft: '1' }}
+                color={i < rating ? 'green.500' : 'red.300'}
+                
+              />
+            );
+          }
+          if (roundedRating - i === 0.5) {
+            return <BsStarHalf key={i} style={{ marginLeft: '1',color:"yellowgreen" }} />;
+          }
+          return <BsStar key={i} style={{ marginLeft: '1' }} />;
+        })}
+      <Box as="span" ml="2" color="gray.600" fontSize="sm">
+        {numReviews} review{numReviews > 1 && 's'}
+      </Box>
+    </Flex>
+  );
+}
 
 function ProductAddToCart(props) {
   const { image, title, price, maxprice, handle, id } = props;
+
   return (
-    <Box objectFit={"cover"} width={"100%"}>
+    <Box objectFit={"cover"} width={"100%"} overflow={"hidden"}>
       <Flex alignItems="center" justifyContent="center">
         <Box
           bg={useColorModeValue("white", "gray.800")}
@@ -84,7 +90,7 @@ function ProductAddToCart(props) {
 
           <Image
             src={image}
-            alt={`Picture of ${title}`}
+            alt={`Picture of ${handle}`}
             roundedTop="sm"
             width={"100%"}
             maxH={"250"}
@@ -98,6 +104,7 @@ function ProductAddToCart(props) {
           />
 
           <Box p="6">
+          <Heading fontWeight={600} fontSize={"sm"} as="sub">{title}</Heading>
             <Box d="flex" alignItems="baseline">
               {data.isNew && (
                 <Badge rounded="full" px="2" fontSize="0.8em" colorScheme="red">
@@ -106,8 +113,8 @@ function ProductAddToCart(props) {
               )}
             </Box>
 
-            <Flex justifyContent="space-between" alignContent="center">
-              {/* <Rating rating={data.rating} numReviews={data.numReviews} /> */}
+            <Flex justifyContent="space-between" alignContent="center" flexDirection={"column"}>
+              <Rating rating={data.rating} numReviews={data.numReviews} />
               <Box
                 fontSize="2xl"
                 color={useColorModeValue("gray.800", "white")}
@@ -132,9 +139,9 @@ function ProductAddToCart(props) {
             <Center>
               <Flex>
                 {" "}
-                <Button bg="red">
+                <Button bg="pink">
                   {" "}
-                  <Link to="/Singleproductpage/1">ADD TO CART </Link>
+                  <NavLink to={`singleproductpage/${id}`}>ADD TO CART </NavLink>
                 </Button>
               </Flex>
             </Center>

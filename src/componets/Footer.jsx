@@ -116,7 +116,7 @@ const Footer = () => (
                   <Heading as={"strong"} mb="0.5rem" fontSize="1rem">
                     100% ORIGINAL{" "}
                   </Heading>
-                        guarantee for all products at myntra.com
+                  guarantee for all products at myntra.com
                 </Heading>
               </Box>
             </Flex>
@@ -132,16 +132,19 @@ const Footer = () => (
                   mb="0.5rem"
                   fontSize="0.875rem"
                   fontWeight="600"
-                  
                 >
                   <Heading as={"strong"} mb="0.5rem" fontSize="1rem">
                     Return within 30days{" "}
                   </Heading>
-                  <Text  
-                  color="gray.700"
-                  mb="0.5rem"
-                  fontSize="0.875rem"
-                  fontWeight="600" as={"span"}>of receiving your order</Text>
+                  <Text
+                    color="gray.700"
+                    mb="0.5rem"
+                    fontSize="0.875rem"
+                    fontWeight="600"
+                    as={"span"}
+                  >
+                    of receiving your order
+                  </Text>
                 </Heading>
               </Box>
             </Flex>
@@ -161,15 +164,23 @@ const Footer = () => (
             >
               EXPERIENCE INFINITE APP ON MOBILE
             </Heading>
-            <Box width={"150px"}>
-              <Flex>
+            <Box
+              maxW="64rem"
+              marginX="auto"
+              pb="2rem"
+              mb="1.5rem"
+              px={10}
+              borderBottom="1px solid"
+              borderColor="gray.300"
+            >
+              <Flex flexDirection={{base:"column"}}>
                 <Image
                   src="https://constant.myntassets.com/web/assets/img/bc5e11ad-0250-420a-ac71-115a57ca35d51539674178941-apple_store.png"
-                  width={"100%"}
+                  w="100px"
                 ></Image>
                 <Image
                   src="https://constant.myntassets.com/web/assets/img/80cc455a-92d2-4b5c-a038-7da0d92af33f1539674178924-google_play.png"
-                  width={"100%"}
+                  w="100px"
                 ></Image>
               </Flex>
             </Box>
