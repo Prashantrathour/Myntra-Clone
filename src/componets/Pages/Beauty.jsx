@@ -39,7 +39,7 @@ let k=1
           </Box>
           <Box>
             {" "}
-            <PaginationRounded />
+           
           </Box>
         </VStack>
       </Center>

@@ -24,6 +24,10 @@ import {
   ListItem,
   List,
   Img,
+  SimpleGrid,
+  Grid,
+  Spinner,
+  Toast,
 } from "@chakra-ui/react";
 import MegaMenu from "./Megadropdown";
 import CartPage from "./Cartpage";
@@ -36,52 +40,136 @@ import {
 } from "react-icons/bs";
 import { BiPurchaseTag, BiShoppingBag } from "react-icons/bi";
 import { CiDeliveryTruck } from "react-icons/ci";
-import { Link, useParams } from "react-router-dom";
+import { Link, NavLink, useParams } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
 import { useEffect } from "react";
+import { toast,ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
+const getdata = (param, id) => {
+  return axios.get(`https://infinity-com.onrender.com/${param}/${id}`);
+};
 export default function Singleproductpage() {
   let { id } = useParams();
   const { param } = useParams();
-  console.log(id, param);
-  const getdata = (param) => {
-    return axios.get(`http://localhost:8080/${param}/${id}`);
-  };
 
+
+  console.log(getdata);
   const [product, setproduct] = useState({});
-  const [loading, setloading] = useState(false);
+  const [trans, settrans] = useState(false);
+
+  const [loading, setloading] = useState(true);
   const [error, seterror] = useState(false);
+  const [qty, setqty] = useState(1);
 
   const fetchdata = async () => {
     try {
       setloading(true);
-      let data = await getdata(param);
-      console.log(data.data);
+      let data = await getdata(param, id);
 
       setproduct(data.data);
+
       setloading(false);
-      seterror(false)
+      seterror(false);
     } catch (error) {
       console.log(error);
       setloading(false);
-      seterror(true)
+      seterror(true);
     }
   };
   useEffect(() => {
     fetchdata();
-  }, []);
-  console.log(product);
-  return (
-
+  }, [id, param]);
+ 
   
-   <Box m="auto" w="full">
-      <MegaMenu />
+  const notify = () => toast("Wow so easy!");
+const posthandle=async()=>{
 
+  try {
+    let res=await axios.post(`https://infinity-com.onrender.com/addcartdata`, {...product,qty:qty});
+    console.log(res.response)
+    toast.success("Product added ")
+    setTimeout(()=>{
+      settrans(true)
+    return axios.get(`https://infinity-com.onrender.com/addcartdata`)
+    settrans(false)
+    },5000)
+    
+  } catch (error) {
+    console.log("error",error);
+    console.log("error----------------------------------")
+    toast.warn("Product allready added ")
+   
+  }
+
+}
+const addtocart=async()=>{
+
+  try {
+    let res=await axios.post(`https://infinity-com.onrender.com/addcartdata`, {...product,qty:qty});
+    console.log(res.response)
+    toast.success("Product added ")
+    setTimeout(()=>{
+      settrans(true)
+    return axios.get(`https://infinity-com.onrender.com/addcartdata`)
+    settrans(false)
+    },5000)
+    
+  } catch (error) {
+    console.log("error",error);
+    console.log("error----------------------------------")
+    toast.warn("Product allready added ")
+   
+  }
+
+}
+
+  return loading ? (
+    <Spinner
+      thickness="4px"
+      speed="0.65s"
+      emptyColor="gray.200"
+      color="blue.500"
+      size="xl"
+    />
+  ) : (
+    <Box m="auto" w="full">
+      <MegaMenu />
+      <ToastContainer/>
       <Box display={{ md: "flex" }}>
-        <Box w={{ md: "50%" }} mb={{ base: "2rem", md: "0" }}>
-          <Image src={"#"} alt="product image" />
-          <Image src={product.images[0]} alt="product image" />
+        <Box w={{ md: "50%" }} mb={{ base: "2rem", md: "0" }} margin={5}>
+          <Grid templateColumns="repeat(2, 1fr)" gap={6}>
+            {console.log("pro", product)}
+         <Image
+              src={product.images[0]}
+              alt="product image"
+            />
+            <Image
+              src={product.images[1] || product.images[0]}
+              alt="product image"
+            />
+            <Image
+              src={product.images[2] || product.images[0]}
+              alt="product image"
+            />
+            <Image
+              src={product.images[3] || product.images[0]}
+              alt="product image"
+            />
+            <Image
+              src={product.images[4] || product.images[0]}
+              alt="product image"
+            />
+            <Image
+              src={product.images[5] || product.images[0]}
+              alt="product image"
+            />
+            <Image
+              src={product.images[6] || product.images[0]}
+              alt="product image"
+            /> 
+          </Grid>
         </Box>
         <Box w={{ md: "50%" }}>
           <Flex flexDirection={"column"}>
@@ -89,7 +177,7 @@ export default function Singleproductpage() {
               {product.title}
             </Heading>
             <Text as="h3" color={"gray"} size="lg" mb="1rem">
-              Blue Print Mandarin Collar Empire Pure Cotton Longline Top
+              {product.type}
             </Text>
             <Flex gap={2}>
               <Button bg={"white"} variant={"outline"} textAlign={"center"}>
@@ -125,7 +213,8 @@ export default function Singleproductpage() {
                       textAlign={"center"}
                       mt="10px"
                     >
-                      ₹1049
+                    {/* -----------------------------------price---------------------------------------- */}
+                     ₹{+product.price*qty}
                     </Text>
                   </MenuButton>
                   <MenuList>
@@ -148,7 +237,7 @@ export default function Singleproductpage() {
                             </Flex>
                             <Stack>
                               {" "}
-                              <Text as={"span"}>Rs. 1049</Text>
+                              <Text as={"span"}>Rs. {+product.price*qty}</Text>
                             </Stack>
                           </Flex>
                           <Flex
@@ -173,7 +262,7 @@ export default function Singleproductpage() {
                               <Text as={"span"}>(Incl. of all taxes)</Text>
                             </Flex>
                             <Stack>
-                              <Text as={"span"}>₹1499</Text>
+                              <Text as={"span"}>{product.price_max+500}</Text>
                             </Stack>
                           </Flex>
                         </Box>
@@ -186,7 +275,7 @@ export default function Singleproductpage() {
               </Flex>
             </Box>
             <Box as="flex" flexFlow={"column"} mt={5} p={6}>
-              <Heading fontSize={"sm"}>MRP {"1449"}</Heading>
+              <Heading fontSize={"sm"}>MRP {product.price+400}</Heading>
             </Box>
           </Flex>
           <Box mb="1rem">
@@ -197,11 +286,11 @@ export default function Singleproductpage() {
               defaultValue={1}
               min={1}
               max={10}
-              w={{ base: "100%", md: "40%" }}
+              w={{ base: "100%", md: "40%" }}onChange={(e)=>setqty(e)}
             >
               <NumberInputField />
-              <NumberInputStepper>
-                <NumberIncrementStepper />
+              <NumberInputStepper >
+                <NumberIncrementStepper  />
                 <NumberDecrementStepper />
               </NumberInputStepper>
             </NumberInput>
@@ -214,11 +303,13 @@ export default function Singleproductpage() {
               borderColor={"#ff527b"}
               size="lg"
               mb={{ base: "2rem", md: "0" }}
+         onClick={addtocart}
+              
             >
               <Flex as="flex" gap={1} flexDirection={"row"}>
                 {" "}
                 <BiShoppingBag />
-                <Text>Add to Cart</Text>
+                <NavLink to={`/productpage/${param}/cartpage/${id}`}><Text>Add to Cart</Text></NavLink>
                 <Spacer />{" "}
               </Flex>
             </Button>
@@ -229,6 +320,7 @@ export default function Singleproductpage() {
               borderColor={"#ff527b"}
               size="lg"
               mb={{ base: "2rem", md: "0" }}
+              onClick={posthandle}
             >
               <Flex as="flex" gap={1} flexDirection={"row"}>
                 {" "}
@@ -243,7 +335,7 @@ export default function Singleproductpage() {
             <CiDeliveryTruck size={40} />
           </Flex>
           <Box>
-            <FormControl autocomplete="off" as={"div"}>
+            <FormControl autoComplete="off" as={"div"}>
               <Flex>
                 <Box p="10px" border={"1px solid gray"} borderRadius={4}>
                   <Input
@@ -350,92 +442,99 @@ export default function Singleproductpage() {
             <Heading fontWeight={600} fontSize={"2xl"}>
               Product Details{" "}
             </Heading>
-            <List>
-              <ListItem
-                color={"gray.600"}
-                as={"p"}
-                fontWeight={500}
-                fontSize={"2sm"}
-              >
-                Blue longline empire top
-              </ListItem>
-              <ListItem
-                color={"gray.600"}
-                as={"p"}
-                fontWeight={500}
-                fontSize={"2sm"}
-              >
-                Ethnic motifs print
-              </ListItem>
-              <ListItem
-                color={"gray.600"}
-                as={"p"}
-                fontWeight={500}
-                fontSize={"2sm"}
-              >
-                Mandarin collar, three-quarter, cuffed sleeves
-              </ListItem>
-              <ListItem
-                color={"gray.600"}
-                as={"p"}
-                fontWeight={500}
-                fontSize={"2sm"}
-              >
-                Gathered or pleated detail
-              </ListItem>
-              <ListItem
-                color={"gray.600"}
-                as={"p"}
-                fontWeight={500}
-                fontSize={"2sm"}
-              >
-                Woven cotton
-              </ListItem>
-              <ListItem
-                color={"gray.800"}
-                as={"h1"}
-                fontWeight={900}
-                fontSize={"2sm"}
-              >
-                Size & Fit
-              </ListItem>
-              <ListItem
-                color={"gray.600"}
-                as={"p"}
-                fontWeight={500}
-                fontSize={"2sm"}
-              >
-                The model (height 5'8) is wearing a size S
-              </ListItem>
-              <ListItem
-                color={"gray.800"}
-                as={"h1"}
-                fontWeight={900}
-                fontSize={"2sm"}
-              >
-                Material & Care
-              </ListItem>
-              <ListItem
-                color={"gray.600"}
-                as={"p"}
-                fontWeight={500}
-                fontSize={"2sm"}
-              >
-                100% cotton
-              </ListItem>
-              <ListItem
-                color={"gray.600"}
-                as={"p"}
-                fontWeight={500}
-                fontSize={"2sm"}
-              >
-                Hand Wash
-              </ListItem>
-            </List>
+            <ul>
+              <li>product</li>
+              <li>product</li>
+              <li>product</li>
+            </ul>
+            {"" || (
+              <List>
+                <ListItem
+                  color={"gray.600"}
+                  as={"p"}
+                  fontWeight={500}
+                  fontSize={"2sm"}
+                >
+                  Blue longline empire top
+                </ListItem>
+                <ListItem
+                  color={"gray.600"}
+                  as={"p"}
+                  fontWeight={500}
+                  fontSize={"2sm"}
+                >
+                  Ethnic motifs print
+                </ListItem>
+                <ListItem
+                  color={"gray.600"}
+                  as={"p"}
+                  fontWeight={500}
+                  fontSize={"2sm"}
+                >
+                  Mandarin collar, three-quarter, cuffed sleeves
+                </ListItem>
+                <ListItem
+                  color={"gray.600"}
+                  as={"p"}
+                  fontWeight={500}
+                  fontSize={"2sm"}
+                >
+                  Gathered or pleated detail
+                </ListItem>
+                <ListItem
+                  color={"gray.600"}
+                  as={"p"}
+                  fontWeight={500}
+                  fontSize={"2sm"}
+                >
+                  Woven cotton
+                </ListItem>
+                <ListItem
+                  color={"gray.800"}
+                  as={"h1"}
+                  fontWeight={900}
+                  fontSize={"2sm"}
+                >
+                  Size & Fit
+                </ListItem>
+                <ListItem
+                  color={"gray.600"}
+                  as={"p"}
+                  fontWeight={500}
+                  fontSize={"2sm"}
+                >
+                  The model (height 5'8) is wearing a size S
+                </ListItem>
+                <ListItem
+                  color={"gray.800"}
+                  as={"h1"}
+                  fontWeight={900}
+                  fontSize={"2sm"}
+                >
+                  Material & Care
+                </ListItem>
+                <ListItem
+                  color={"gray.600"}
+                  as={"p"}
+                  fontWeight={500}
+                  fontSize={"2sm"}
+                >
+                  100% cotton
+                </ListItem>
+                <ListItem
+                  color={"gray.600"}
+                  as={"p"}
+                  fontWeight={500}
+                  fontSize={"2sm"}
+                >
+                  Hand Wash
+                </ListItem>
+              </List>
+            )}
           </Box>
-    
         </Box>
       </Box>
+    
     </Box>
-  )
+  );
 }

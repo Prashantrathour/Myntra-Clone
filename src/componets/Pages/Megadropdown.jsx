@@ -1,5 +1,7 @@
-import { Box, Button, Flex, Heading, Icon, Link, Menu, MenuButton, MenuList, MenuItem, Text, useDisclosure } from "@chakra-ui/react";
+import { Box, Button, Flex, Heading, Icon, Link, Menu, MenuButton, MenuList, MenuItem, Text, useDisclosure,Avatar,IconButton } from "@chakra-ui/react";
+import { NavLink } from "react-router-dom";
 import { FaBars } from "react-icons/fa";
+import { BsCart ,BsBagHeartFill} from "react-icons/bs";
 
 export default function Megadropdown() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -9,16 +11,19 @@ export default function Megadropdown() {
       <Box maxW="7xl" mx="auto">
         <Flex justify="space-between" align="center">
           <Heading as="h1" size="lg">
-            My Store
+           INFINITY
           </Heading>
           <Box display={{ base: "block", md: "none" }} onClick={onOpen}>
             <Icon as={FaBars} fontSize="xl" />
           </Box>
           <Box display={{ base: "none", md: "block" }}>
-            <Flex>
-              <Link to="/">Home</Link>
-              <Link mx="1rem">About</Link>
-              <Link mx="1rem">Contact</Link>
+            <Flex gap={4}>
+              <NavLink to="/">Home</NavLink>
+              <NavLink to="/cartpage"><BsCart/></NavLink>
+              
+              <NavLink to="/checkout"><BsBagHeartFill/></NavLink>
+
+           
               <Menu>
                 <MenuButton as={Button} variant="link" mx="1rem">
                   Categories
@@ -28,10 +33,10 @@ export default function Megadropdown() {
                     <Box mr="2rem">
                       <Text fontSize="lg" fontWeight="bold">Clothing</Text>
                       <Box>
-                        <MenuItem>Men's Clothing</MenuItem>
-                        <MenuItem>Women's Clothing</MenuItem>
-                        <MenuItem>Kids & Baby Clothing</MenuItem>
-                        <MenuItem>Accessories</MenuItem>
+                        <MenuItem><NavLink to="/productpage/Mens">Men's Clothing</NavLink></MenuItem>
+                        <MenuItem><NavLink to="/productpage/womens">Women Men's Clothing</NavLink></MenuItem>
+                        <MenuItem><NavLink to="/productpage/kids">Kids Clothing</NavLink></MenuItem>
+                    
                       </Box>
                     </Box>
                     <Box mr="2rem">
@@ -53,12 +58,12 @@ export default function Megadropdown() {
                       </Box>
                     </Box>
                     <Box mr="2rem">
-                      <Text fontSize="lg" fontWeight="bold">Sports & Outdoors</Text>
+                      <Text fontSize="lg" fontWeight="bold">Beauty</Text>
                       <Box>
-                        <MenuItem>Camping & Hiking</MenuItem>
-                        <MenuItem>Exercise & Fitness</MenuItem>
-                        <MenuItem>Hunting & Fishing</MenuItem>
-                        <MenuItem>Cycling</MenuItem>
+                        <MenuItem><NavLink to="/beauty/beautyproduct">Makeup</NavLink></MenuItem>
+                        <MenuItem>LipStick</MenuItem>
+                        <MenuItem>eye brows</MenuItem>
+                        <MenuItem>Nail paint</MenuItem>
                       </Box>
                     </Box>
                   </Flex>

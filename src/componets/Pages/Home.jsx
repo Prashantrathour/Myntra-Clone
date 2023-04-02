@@ -24,19 +24,19 @@ export default function Home() {
       <CaptionCarousel   />
       <Box zIndex={-1} position={"relative"}>
       <Box mt={"-16"}>
-        <Heading ml={2}>DEAL OF THE DAY</Heading>
+        <Heading as={"sub"} fontSize={"2xl"} ml={2}>DEAL OF THE DAY</Heading>
         <Card>
           <Cart data={bestdeal} />
         </Card>
       </Box>
       <Box>
-        <Heading ml={2}>BEST OF INFINITY EXCLUSIVE BRANDS</Heading>
+        <Heading  as={"sub"} fontSize={"2xl"}  ml={2}>BEST OF INFINITY EXCLUSIVE BRANDS</Heading>
         <Card>
           <Cart data={bestexclusive} />
         </Card>
       </Box>
       <Box>
-        <Heading ml={2}>TOP PICS</Heading>
+        <Heading  as={"sub"} fontSize={"2xl"}  ml={2}>TOP PICS</Heading>
         <Card>
           <CardBody>
             <SimpleGrid columns={{ base: 1, sm: 2, lg: 4, xl: 7 }} spacing={0}>
@@ -48,19 +48,19 @@ export default function Home() {
         </Card>
       </Box>
       <Box>
-        <Heading ml={2}>TOP PICS</Heading>
+        <Heading  as={"sub"} fontSize={"2xl"}  ml={2}>TOP PICS</Heading>
         <Card>
           <Cart data={roundimage} />
         </Card>
       </Box>
       <Box>
-        <Heading ml={2}>DEALS ON TOP BRANDS</Heading>
+        <Heading  as={"sub"} fontSize={"2xl"}  ml={2}>DEALS ON TOP BRANDS</Heading>
         <Card>
           <Cart data={topbrand} />
         </Card>
       </Box>
       <Box>
-        <Heading ml={2}>SALECED PRICE</Heading>
+        <Heading  as={"sub"} fontSize={"2xl"}  ml={2}>SALECED PRICE</Heading>
         <Card>
           <CardBody>
             <SimpleGrid columns={{ base: 1, sm: 2, lg: 4, xl: 7 }} spacing={0}>
@@ -72,19 +72,19 @@ export default function Home() {
         </Card>
       </Box>
       <Box>
-        <Heading ml={2}>BEST BUY</Heading>
+        <Heading  as={"sub"} fontSize={"2xl"}  ml={2}>BEST BUY</Heading>
         <Card>
           <Cart data={bestbuy} />
         </Card>
       </Box>
       <Box mt={5}>
-        <Heading ml={2}>BEST BUY</Heading>
+        <Heading  as={"sub"} fontSize={"2xl"}  ml={2}>BEST BUY</Heading>
         <Card>
           <Cart data={Luxe} />
         </Card>
       </Box>
       <Box>
-        <Heading ml={2}>GIFT CARD</Heading>
+        <Heading  as={"sub"} fontSize={"2xl"}  ml={2}>GIFT CARD</Heading>
         <Card>
           <CardBody>
             <SimpleGrid columns={{ base: 1, sm: 2, lg: 4, xl: 4 }} spacing={0}>
@@ -96,7 +96,7 @@ export default function Home() {
         </Card>
       </Box>
       <Box>
-        <Heading ml={2}>LATEST IN BEAUTY & GROOMING</Heading>
+        <Heading  as={"sub"} fontSize={"2xl"}  ml={2}>LATEST IN BEAUTY & GROOMING</Heading>
         <Card>
           <CardBody>
             <SimpleGrid columns={{ base: 1, sm: 2, lg: 4, xl: 4 }} spacing={0}>
@@ -108,7 +108,7 @@ export default function Home() {
         </Card>
       </Box>
       <Box>
-        <Heading ml={2}>KIDS WEAR</Heading>
+        <Heading  as={"sub"} fontSize={"2xl"}  ml={2}>KIDS WEAR</Heading>
         <Card>
           <CardBody>
             <SimpleGrid columns={{ base: 1, sm: 2, lg: 4, xl:7 }} spacing={0}>
@@ -120,7 +120,7 @@ export default function Home() {
         </Card>
       </Box>
       <Box>
-        <Heading ml={2}>NEWNESS FOR EVERY OCCASION</Heading>
+        <Heading  as={"sub"} fontSize={"2xl"}  ml={2}>NEWNESS FOR EVERY OCCASION</Heading>
         <Card>
           <CardBody>
             <SimpleGrid columns={{ base: 1, sm: 2, lg: 4, xl:4 }} spacing={0}>
@@ -132,7 +132,7 @@ export default function Home() {
         </Card>
       </Box>
       <Box>
-        <Heading ml={2}>NEWNESS FOR EVERY OCCASION</Heading>
+        <Heading  as={"sub"} fontSize={"2xl"}  ml={2}>NEWNESS FOR EVERY OCCASION</Heading>
         <Card>
           <CardBody>
             <SimpleGrid columns={{ base: 1, sm: 2, lg: 4, xl:4 }} spacing={0}>
@@ -144,7 +144,7 @@ export default function Home() {
         </Card>
       </Box>
       <Box>
-        <Heading ml={2}>INFLUENCER STYLE</Heading>
+        <Heading  as={"sub"} fontSize={"2xl"}  ml={2}>INFLUENCER STYLE</Heading>
         <Card>
           <CardBody>
             <SimpleGrid columns={{ base: 1, sm: 2, lg: 3, xl:6 }} spacing={0}>

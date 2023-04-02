@@ -1,33 +1,49 @@
-import { Flex, Box, Heading, Text, Button, Image } from "@chakra-ui/react";
-import { Link, useSearchParams } from "react-router-dom";
+import {
+  Flex,
+  Box,
+  Heading,
+  Text,
+  Button,
+  Image,
+  Spinner,
+} from "@chakra-ui/react";
+import { Link, NavLink, useParams, useSearchParams } from "react-router-dom";
+import Megadropdown from "./Megadropdown";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
-const getdata = (param, params = {}) => {
-  return axios.get(`http://localhost:8080/${"Mens"}`, {
-    params: {
-      _page: params._page,
-      _limit: params._limit,
-      _sort: params.sort,
-      _order: params.order,
-    },
-  });
+const postdatacart = (param, id) => {
+  return axios.get(`https://infinity-com.onrender.com/${param}/${id}`);
+};
+const getdata = () => {
+  return axios.get(`https://infinity-com.onrender.com/addcartdata`);
 };
 
-const CartPage = ({ removeFromCart, checkout }) => {
+const CartPage = ({ checkout }) => {
   const [cartItems, setproduct] = useState([]);
-  const [page, setpage] = useSearchParams();
-  console.log(page.get("page"));
+  const [loading, setloading] = useState(true);
+
+  const { id, param } = useParams();
+
+  const postdata = async () => {
+    // try {
+    //   let data = await postdatacart(param, id);
+    //   axios.post(`https://infinity-com.onrender.com/addcartdata`, data.data);
+    //   toast.success("Product added successfully")
+    // } catch (error) {
+    //   console.log(error);
+    //   toast.warn("Product all ready added successfully")
+    // }
+  };
 
   const fetchdata = async () => {
     try {
-      let params = {
-        _page: page.get("page"),
-        _limit: 15,
-        sort: "discountedPrice",
-        order: "asc",
-      };
+      setloading(true);
+      let data = await getdata();
+      console.log(data);
 
-      let data = await getdata(params);
+      setloading(false);
 
       let mapeddata = data.data.map((pro, i) => {
         // console.log(pro.id,pro.image[0]);
@@ -38,20 +54,40 @@ const CartPage = ({ removeFromCart, checkout }) => {
           maxprice: pro.price_max,
           handle: pro.handle,
           id: pro.id || i + 1,
+          qty:pro.qty||1
         };
       });
 
       setproduct(mapeddata);
-      console.log(mapeddata);
     } catch (error) {
       console.log(error);
     }
   };
   useEffect(() => {
     fetchdata();
-  }, [page]);
-
+    setTimeout(()=>{
+    
+      return fetchdata()
+     
+      },5000)
+  },[]);
+ 
   console.log(cartItems);
+const removeFromCart=async(id)=>{
+  try{
+let res=axios.delete(`https://infinity-com.onrender.com/addcartdata/${id}`);
+
+setTimeout(()=>{
+fetchdata();
+console.log("Success")
+},5000)
+
+toast.success("Product remove successfully")
+  }catch(e){
+console.log(e.message)
+  }
+  
+}
   // let maped=data.map((pro,i)=>{
   //     return{
   //         image: pro.images[0],
@@ -67,51 +103,62 @@ const CartPage = ({ removeFromCart, checkout }) => {
   );
 
   return (
-    <Box p={4}>
-      <Heading mb={4}>Shopping Cart</Heading>
-      {cartItems.length === 0 ? (
-        <Text>Your cart is empty</Text>
-      ) : (
-        <Flex flexWrap="wrap">
-          {[{ name: "name" }].map((item) => (
-            <Box key={item.id} p={2} flex="1 0 300px">
-              <Image src={item.image} alt={item.name} />
-              <Text mt={2} fontWeight="bold">
-                {item.name}
+    <Box>
+      <Megadropdown />
+      <Box p={4}>
+        {cartItems.length === 0 ? (
+          <Text>Your cart is empty</Text>
+        ) : loading ? (
+          <Spinner
+            thickness="4px"
+            speed="0.65s"
+            emptyColor="gray.200"
+            color="blue.500"
+            size="xl"
+          />
+        ) : (
+          <Flex flexWrap="wrap">
+            {cartItems.map((item) => (
+              <Box key={item.id} p={2} flex="1 0 300px" width={"100px"}>
+                <Image width={"100px"} src={item.image} alt={item.name} />
+                <Text mt={2} fontWeight="bold">
+                  {item.name}
+                </Text>
+                <Text mt={1}>Price: ${item.price}</Text>
+                <Text mt={1}>Quantity: {item.qty}</Text>
+                <Button
+                  mt={2}
+                  size="sm"
+                  colorScheme="red"
+                  onClick={() => removeFromCart(item.id)}
+                >
+                  Remove
+                </Button>
+              </Box>
+            ))}
+            <Box flex="1 0 300px">
+              <Heading size="md">Cart Summary</Heading>
+              <Text mt={2}>
+                Subtotal ({cartItems.reduce((acc, item) => acc + item.qty, 0)}{" "}
+                items): ${cartTotal.toFixed(2)}
               </Text>
-              <Text mt={1}>Price: ${item.price}</Text>
-              <Text mt={1}>Quantity: {item.qty}</Text>
               <Button
-                mt={2}
-                size="sm"
-                colorScheme="red"
-                onClick={() => removeFromCart(item.id)}
+                mt={4}
+                size="md"
+                colorScheme="teal"
+                onClick={checkout}
+                disabled={cartItems.length === 0}
               >
-                Remove
+               <NavLink to="/checkout">Checkout</NavLink> 
               </Button>
+              <Link to="/" mt={2} display="block">
+                Continue shopping
+              </Link>
             </Box>
-          ))}
-          <Box flex="1 0 300px">
-            <Heading size="md">Cart Summary</Heading>
-            <Text mt={2}>
-              Subtotal ({cartItems.reduce((acc, item) => acc + item.qty, 0)}{" "}
-              items): ${cartTotal.toFixed(2)}
-            </Text>
-            <Button
-              mt={4}
-              size="md"
-              colorScheme="teal"
-              onClick={checkout}
-              disabled={cartItems.length === 0}
-            >
-              Checkout
-            </Button>
-            <Link to="/" mt={2} display="block">
-              Continue shopping
-            </Link>
-          </Box>
-        </Flex>
-      )}
+          </Flex>
+        )}
+      </Box>
+      <ToastContainer />
     </Box>
   );
 };

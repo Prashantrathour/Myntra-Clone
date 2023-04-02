@@ -1,20 +1,18 @@
 import { Box, Button, Heading } from "@chakra-ui/react";
 import { useSearchParams } from "react-router-dom";
+import { AiOutlineArrowRight,AiOutlineArrowLeft } from "react-icons/ai";
 
-export function PaginationRounded({ totalcount = 10, currentpage = 1 }) {
-  let butoon = new Array(totalcount).fill(1);
-  const [page,setpage]=useSearchParams()
-  console.log(page)
+export function PaginationRounded({ total, page, setpage }) {
+  let butoon = new Array(+total).fill(1);
 
   return (
     <>
       <Box>
-      
-        {butoon.map((im,i) => {
-          return (
-              <Button onClick={()=>setpage({page:i+1})}>{i+1}</Button>
-          );
-        })}
+        <Button onClick={() => setpage(page + 1)}><AiOutlineArrowLeft/></Button>
+        <Button disabled onClick={() => setpage(page + 1)}>
+          {page}
+        </Button>
+        <Button onClick={() => setpage(page + 1)}><AiOutlineArrowRight/></Button>
       </Box>
     </>
   );

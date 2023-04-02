@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactNode,useEffect,useState } from "react";
 import navstyle from "./navbar.module.css";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -34,8 +34,30 @@ import { NavLink } from "react-router-dom";
 import Loginmenu from "./Pages/Logindropdown";
 const Links = ["Dashboard", "Projects", "Team"];
 
-export default function Navbar() {
+export default function Navbar({queryhandler}) {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [query, setQuery] = useState("");
+  const [results, setResults] = useState([]);
+
+  const searchAPI = async (query) => {
+    const response = await fetch(`https://api.example.com/search?q=${query}`);
+    const data = await response.json();
+    setResults(data.results);
+  };
+
+  useEffect(() => {
+    if (query) {
+      searchAPI(query);
+    }
+  }, []);
+
+  const handleSearch = (event) => {
+  
+    setQuery(event.target.value)
+  };
+  const searchset=()=>{
+      queryhandler(query);
+  }
 
   let style1 = {
     color: "red",
@@ -45,12 +67,11 @@ export default function Navbar() {
   };
   return (
     <Box
-    className={navstyle.navbar}
+      className={navstyle.navbar}
       height={"100%"}
       pt={4}
       pb={4}
       boxShadow="md"
-      
       rounded="md"
       bg="white"
       justify="center"
@@ -159,18 +180,22 @@ export default function Navbar() {
                 color={"blackAlpha"}
                 icon={<SearchIcon />}
                 size="sm"
+                onClick={searchset}
               />
+              {/* -------------------------------=search=----------------- */}
               <Input
                 type={"search"}
                 placeholder="Search Product"
                 size="sm"
                 width={"sm"}
+                value={query}
+                onChange={handleSearch}
               />
             </Flex>
 
             <Spacer />
             <Flex direction={"column"}>
-              <IconButton
+               <NavLink to="/cartpage"><IconButton
                 color={"blackAlpha"}
                 bg="whiteAlpha.100"
                 icon={
@@ -179,7 +204,7 @@ export default function Navbar() {
                     src="https://cdn-icons-png.flaticon.com/128/2767/2767018.png"
                   />
                 }
-              />
+              /></NavLink>
 
               <Text size="sm" pt={-10} fontWeight="bold" as={"sub"}>
                 Wishlist
@@ -187,7 +212,8 @@ export default function Navbar() {
             </Flex>
             <Spacer />
             <Flex direction={"column"}>
-              <IconButton
+           
+              <NavLink to={"/cartpage"}><IconButton
                 color={"blackAlpha"}
                 bg="whiteAlpha.100"
                 icon={
@@ -197,6 +223,7 @@ export default function Navbar() {
                   />
                 }
               />
+              </NavLink>
 
               <Text size="sm" pt={-10} fontWeight="bold" as={"sub"}>
                 {"        Beg"}

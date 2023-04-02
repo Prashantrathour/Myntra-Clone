@@ -141,7 +141,7 @@ function ProductAddToCart(props) {
                 {" "}
                 <Button bg="pink">
                   {" "}
-                  <NavLink to={`singleproductpage/${id}`}>ADD TO CART </NavLink>
+                  <NavLink  to={`singleproductpage/${id}`}>ADD TO WISHLIST </NavLink>
                 </Button>
               </Flex>
             </Center>

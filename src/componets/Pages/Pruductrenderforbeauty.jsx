@@ -26,9 +26,10 @@ import { useParams, useSearchParams } from "react-router-dom";
 import Navbar from "../Navbar";
 import ProductAddToCart from "./Cardpage";
 import Split from "./Split";
+import {PaginationRounded }from "../Pagination";
 const getdata = (param,params={}) => {
    
-  return axios.get(`http://localhost:8080/${param}`,{
+  return axios.get(`https://infinity-com.onrender.com/${param}`,{
     params:{
         category:params.category,
         _page:params._page,
@@ -43,20 +44,22 @@ const getdata = (param,params={}) => {
 export default function Pruductrenderforbeauty({param,category,q}) {
     console.log('Pruductrender',param,category,q);
     const [product, setproduct] = useState([]);
-    const [searchParam,setsearchParams] =useSearchParams()
-    const [page,setpage]=useSearchParams()
-    console.log(page.get("page"))
+    // const [searchParam,setsearchParams] =useSearchParams()
+    // const [page,setpage]=useSearchParams()
+    const [page, setpage] = useState(1);
+    const [total, settotle] = useState(1);
+    
 useEffect(()=>{
 
 
-},[searchParam,category])
+},[category])
   const fetchdata = async () => {
     try {
         let params={
-            _page:page.get("page")||1,
-            _limit:15,
+            _page:page,
+            _limit:12,
             sort:"discountedPrice",
-            order:"asc",
+            order:"desc",
             category:category
         }
         // setsearchParams(params)
@@ -86,6 +89,7 @@ useEffect(()=>{
 
   return (
     <>
+    <Box>
        <Center>
       <SimpleGrid  columns={{ base: '1',sm:2, md: '3', lg: '4',xl:"4" }} columnGap={10} rowGap={5} >
     
@@ -96,6 +100,8 @@ useEffect(()=>{
   
        </SimpleGrid>
        </Center>
-    </>
+       </Box>
+   
+   </>
   );
 }

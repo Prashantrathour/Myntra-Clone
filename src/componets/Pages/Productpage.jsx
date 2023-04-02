@@ -6,6 +6,9 @@ import {
   Flex,
   Heading,
   HStack,
+  MenuItemOption,
+  MenuOptionGroup,
+  Select,
   Text,
   VStack,
 } from "@chakra-ui/react";
@@ -19,26 +22,29 @@ import Fitermenu from "./Fitermenu";
 import Productranderpage from "./Productranderpage";
 
 import Split from "./Split";
+import { useState } from "react";
 
 export default function Productpage() {
+  const [query,setquery]=useState('')
   const { param } = useParams();
   let k = 1;
+  const queryhandler=(query)=>{
+    setquery(query)
+  }
   return (
     <>
-      <Navbar />
+      <Navbar queryhandler={queryhandler} />
       <Center>
         <VStack mt={10} >
           <Box>
             <Split />
             <Flex justifyContent={"space-between"} gap={25}>
               <Fitermenu />
-              <Productranderpage param={param} />
+              
+              <Productranderpage param={param} query={query} />
             </Flex>
           </Box>
-          <Box>
-            {" "}
-            <PaginationRounded />
-          </Box>
+       
         </VStack>
       </Center>
       <Footer/>
