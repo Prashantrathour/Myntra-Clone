@@ -4,7 +4,7 @@ import { bestdeal, roundimage } from "./images1.jsx";
 import { toppics ,bestexclusive} from "./images1.jsx";
 
 export default function Div({img}) {
-    console.log(img)
+
   return (
     <>
       <Box mt={2}>

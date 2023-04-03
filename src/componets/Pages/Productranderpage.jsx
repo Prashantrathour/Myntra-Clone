@@ -2,6 +2,7 @@ import { ChevronDownIcon } from "@chakra-ui/icons";
 
 import {
   Progress,
+  Select,
   Skeleton,
   SkeletonCircle,
   SkeletonText,
@@ -35,8 +36,8 @@ import Navbar from "../Navbar";
 import ProductAddToCart from "./Cardpage";
 import Split from "./Split";
 import { PaginationRounded } from "../Pagination";
-const getdata = (param,query,page,sort,order, params = {}) => {
-  console.log("---------------------",query,"-----------------------------")
+const getdata = (param,params = {}) => {
+
   // return axios.get(`https://infinity-com.onrender.com/${param}_limit=10&_page=1`, {
   //   params: {
   //     _limit: params._limit,
@@ -48,10 +49,10 @@ const getdata = (param,query,page,sort,order, params = {}) => {
   return axios.get(`https://infinity-com.onrender.com/${param}`,{
     params: {
       //     _limit:12,
-        
-          _sort: sort,
-          _order:order,
-          _page:page,
+          q:params.query,
+         _sort:params.sort,
+         _order:params.order,
+          _page:params.page,
           _limit:12,
           
         },
@@ -64,6 +65,9 @@ export default function Productranderpage({ param,query }) {
   const [loading, setloading] = useState(true);
   const [page, setpage] = useState(1);
   const [total, settotle] = useState(1);
+  const [priceorder,setprice]=useState("desc")
+  const [order,setorder]=useState("")
+console.log(priceorder,order)
 
 
   const fetchdata = async () => {
@@ -74,14 +78,16 @@ export default function Productranderpage({ param,query }) {
       
        
         sort: "price",
-        order: "asc",
-        q:query
+        order: priceorder,
+        query: query,
+    
+        page:+page
       
       };
-      
-      let data = await getdata(param, params,page,params.sort,params.order,params.query);
+      console.log(params)
+      let data = await getdata(param, params,params.page,params.sort,params.order);
       settotle(data.headers.get('x-total-count'))
-      
+      console.log(data)
       let mapeddata = data.data.map((pro, i) => {
         // console.log(pro.id,pro.image[0]);
         return {
@@ -106,9 +112,9 @@ export default function Productranderpage({ param,query }) {
   useEffect(() => {
     fetchdata();
     
-  }, [param, page,query]);
+  }, [param, page,query,priceorder]);
 console.log("totle",total)
-
+console.log(query)
   return (
     <>
       {loading ? (
@@ -126,6 +132,20 @@ console.log("totle",total)
         </>
       ) : (
         <Box>
+        <Flex>
+          <Select onChange={(e)=>setprice(e.target.value)}>
+            <option value={""}>--sort(price)--</option>
+            <option value={"acs"}>--accending order--</option>
+            <option value={"desc"}>--deccending order--</option>
+            
+          </Select>
+          <Select onChange={(e)=>setorder(e.target.value)}>
+            <option value={""}>--sort(alphabatically)--</option>
+            <option value={"acs"}>--accending order(A-Z)--</option>
+            <option value={"desc"}>--deccending order(Z-A)--</option>
+            
+          </Select>
+          </Flex>
           <Center>
             <SimpleGrid
               columns={{ base: "1", sm: 2, md: "3", lg: "4", xl: "4" }}

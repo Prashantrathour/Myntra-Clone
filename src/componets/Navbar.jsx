@@ -1,4 +1,4 @@
-import { ReactNode,useEffect,useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import navstyle from "./navbar.module.css";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -28,17 +28,20 @@ import {
   Spacer,
   Text,
   color,
+  Drawer,
+  DrawerContent,
+  useColorModeValue,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon, SearchIcon } from "@chakra-ui/icons";
 import { NavLink } from "react-router-dom";
 import Loginmenu from "./Pages/Logindropdown";
 const Links = ["Dashboard", "Projects", "Team"];
 
-export default function Navbar({queryhandler}) {
+export default function Navbar({ queryhandler }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
-
+  console.log(isOpen);
   const searchAPI = async (query) => {
     const response = await fetch(`https://api.example.com/search?q=${query}`);
     const data = await response.json();
@@ -52,12 +55,11 @@ export default function Navbar({queryhandler}) {
   }, []);
 
   const handleSearch = (event) => {
-  
-    setQuery(event.target.value)
+    setQuery(event.target.value);
   };
-  const searchset=()=>{
-      queryhandler(query);
-  }
+  const searchset = () => {
+    queryhandler(query);
+  };
 
   let style1 = {
     color: "red",
@@ -65,6 +67,26 @@ export default function Navbar({queryhandler}) {
   let style2 = {
     color: "black",
   };
+  const Links = [
+    { path: "/productpage/mens", link: "Mens" },
+    { path: "/productpage/Womens", link: "Womens" },
+    { path: "/productpage/kids", link: "Kids" },
+    ,
+    { path: "/beauty/:beauty", link: "Beauty" },
+  ];
+  // const NavLink = ({ children }: { children: ReactNode }) => (
+  //   <Link
+  //     px={2}
+  //     py={1}
+  //     rounded={'md'}
+  //     _hover={{
+  //       textDecoration: 'none',
+  //       bg: useColorModeValue('gray.200', 'gray.700'),
+  //     }}
+  //     href={'#'}>
+  //     {children}
+  //   </Link>
+  // );
   return (
     <Box
       className={navstyle.navbar}
@@ -99,7 +121,7 @@ export default function Navbar({queryhandler}) {
           >
             {" "}
             <NavLink
-              style={({ isActive }) => console.log(isActive)}
+              style={({ isActive }) => console.log("")}
               to="/productpage/mens"
             >
               <Stack>
@@ -195,16 +217,18 @@ export default function Navbar({queryhandler}) {
 
             <Spacer />
             <Flex direction={"column"}>
-               <NavLink to="/cartpage"><IconButton
-                color={"blackAlpha"}
-                bg="whiteAlpha.100"
-                icon={
-                  <Avatar
-                    size="sm"
-                    src="https://cdn-icons-png.flaticon.com/128/2767/2767018.png"
-                  />
-                }
-              /></NavLink>
+              <NavLink to="/cartpage">
+                <IconButton
+                  color={"blackAlpha"}
+                  bg="whiteAlpha.100"
+                  icon={
+                    <Avatar
+                      size="sm"
+                      src="https://cdn-icons-png.flaticon.com/128/2767/2767018.png"
+                    />
+                  }
+                />
+              </NavLink>
 
               <Text size="sm" pt={-10} fontWeight="bold" as={"sub"}>
                 Wishlist
@@ -212,17 +236,17 @@ export default function Navbar({queryhandler}) {
             </Flex>
             <Spacer />
             <Flex direction={"column"}>
-           
-              <NavLink to={"/cartpage"}><IconButton
-                color={"blackAlpha"}
-                bg="whiteAlpha.100"
-                icon={
-                  <Avatar
-                    size="sm"
-                    src="https://cdn-icons-png.flaticon.com/128/4903/4903482.png"
-                  />
-                }
-              />
+              <NavLink to={"/cartpage"}>
+                <IconButton
+                  color={"blackAlpha"}
+                  bg="whiteAlpha.100"
+                  icon={
+                    <Avatar
+                      size="sm"
+                      src="https://cdn-icons-png.flaticon.com/128/4903/4903482.png"
+                    />
+                  }
+                />
               </NavLink>
 
               <Text size="sm" pt={-10} fontWeight="bold" as={"sub"}>
@@ -239,13 +263,56 @@ export default function Navbar({queryhandler}) {
         </HStack>
       </Flex>
 
-      {isOpen ? (
+      {/* {isOpen ? (
         <Box pb={4} display={{ md: "none" }}>
           <Stack as={"nav"} spacing={4}>
-            {/* {Links.map((link) => (
-                <NavLink key={link}>{link}</NavLink>
-              ))} */}
+            {Links.map((link) => (
+                <NavLink key={link.link} to={link.path}>{link.link}</NavLink>
+              ))}
+             
           </Stack>
+        </Box>
+      ) : null} */}
+      {isOpen ? (
+        <Box bg="white" position="fixed" top="4.5rem" zIndex="99">
+          <Flex direction="column" p="1rem">
+            <NavLink to={"/productpage/mens"}  _hover={{
+                  textDecoration: "none",
+                  bg: "pink",
+                }}>
+              <Link
+                _hover={{
+                  textDecoration: "none",
+                  bg: "pink",
+                }}
+                py={1}
+                rounded={"md"}
+                mx="1rem"
+                my="0.5rem"
+                onClick={onClose}
+              >
+                MENS
+              </Link>
+            </NavLink>
+            <NavLink to={"/productpage/Womens"}>
+              {" "}
+              <Link mx="1rem" my="0.5rem" onClick={onClose}>
+                Womens
+              </Link>
+            </NavLink>
+            <NavLink to={"/productpage/kids"}>
+              {" "}
+              <Link mx="1rem" my="0.5rem" onClick={onClose}>
+                Kids
+              </Link>
+            </NavLink>
+            <NavLink to={"/beauty/beautyproduct"}>
+              {" "}
+              <Link mx="1rem" my="0.5rem" onClick={onClose}>
+                BEAUTY
+              </Link>
+            </NavLink>
+          </Flex>
         </Box>
       ) : null}
     </Box>

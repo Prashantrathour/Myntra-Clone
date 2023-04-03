@@ -8,8 +8,8 @@ export function PaginationRounded({ total, page, setpage }) {
   return (
     <>
       <Box>
-        <Button onClick={() => setpage(page + 1)}><AiOutlineArrowLeft/></Button>
-        <Button disabled onClick={() => setpage(page + 1)}>
+        <Button isDisabled={page==1?true:false} onClick={() => setpage(page - 1)}><AiOutlineArrowLeft/></Button>
+        <Button isDisabled={true} >
           {page}
         </Button>
         <Button onClick={() => setpage(page + 1)}><AiOutlineArrowRight/></Button>
