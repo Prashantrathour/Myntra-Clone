@@ -16,12 +16,13 @@ import {
 
 import { useEffect, useState } from "react";
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 import { Navigate } from "react-router-dom";
 import { Auth } from "../Contextprovider/Context/AuthContext";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Megadropdown from "./Megadropdown";
 export default function Login() {
   const [logindata, setlogin] = useState("");
   const [email, setemail] = useState("");
@@ -36,33 +37,28 @@ export default function Login() {
     setpassword(e.target.value);
   };
   const login = async (e) => {
+
+    if(email==""||password==""){
+      toast.warn("Please enter a valid email or password")
+      return;
+    }else{
     try {
-      let res = await fetch(`https://reqres.in/api/login`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: email,
-          password: password,
-        }),
-      });
-      let token = await res.json();
-
+      let res = await fetch(`https://infinity-com.onrender.com/user/?id=${email}&password=${password}`)
+      let data = await res.json()
       
-      console.log(res.ok);
-
-      res.ok?toast.success("login Successfully"):toast.warn("Wrong credential");
+       
+     data.length!=0
+        ? toast.success("login Successfully")
+        : toast.warn("Wrong password of user not registered");
       setTimeout(() => {
-        setAuth(!res.ok);
-
-      settoken(token);
+        setAuth(data.length!==0?false:true);
       }, 2000);
     } catch (error) {
       setAuth(true);
       settoken("");
-      toast.warn("Wrong credential");
+      toast.warn("Not reagister please reagister first", error);
     }
+  }
   };
 
   const submithandle = (e) => {
@@ -78,6 +74,7 @@ export default function Login() {
     <>
       {isAuth ? (
         <Box bg={"#fcefe7"} height={"100vh"} width={"full"}>
+        <Megadropdown/>
           <Flex
             p={8}
             flex={1}
@@ -149,6 +146,7 @@ export default function Login() {
                   <Checkbox>Remember me</Checkbox>
                   <Link color={"blue.500"}>Forgot password?</Link>
                 </Stack>
+                  <NavLink to="/registerpage">New User ?</NavLink>
               </Stack>
             </Stack>
           </Flex>

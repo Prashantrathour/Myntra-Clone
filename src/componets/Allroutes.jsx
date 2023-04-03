@@ -15,6 +15,7 @@ import { Heading } from "@chakra-ui/react";
 import CartPage from "./Pages/Cartpage";
 import CheckoutPage from "./Pages/Checkoutpage";
 import CheckoutPaymentDetails from "./Pages/paymentpage2";
+import Register from "./Pages/Registerpage";
 
 export default function Allroutes() {
   return (
@@ -33,6 +34,7 @@ export default function Allroutes() {
       } />
       
       <Route path="/cartpage" element={<PrivateRoute><CartPage /></PrivateRoute>} />
+      <Route path="/registerpage" element={<Register />} />
       
       <Route path="/payment" element={<PrivateRoute><CheckoutPaymentDetails/></PrivateRoute>} />
       
