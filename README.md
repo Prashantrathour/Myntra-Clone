@@ -1,6 +1,7 @@
  # INFINITY
 
-
+### Netlify link=>https://prashantinfinity.netlify.app/
+### vercel link=>https://premium-grade-140-six.vercel.app/
 
 
 ## Description
