@@ -31,7 +31,7 @@ We have tried our best to make a fully-functional clone of Myntra website that p
 #### Tech Stack-
 
 <p float="left">
- <img src="![image](https://user-images.githubusercontent.com/112960345/229786435-9ad00ae9-dd27-42d2-9d5e-858d9cecffd4.png)" height="100">
+ <img src="https://user-images.githubusercontent.com/112960345/229786435-9ad00ae9-dd27-42d2-9d5e-858d9cecffd4.png" height="100">
     <img src="https://cdn.pixabay.com/photo/2017/08/05/11/16/logo-2582748_640.png" width="100" height="100">
     <img src="https://cdn.pixabay.com/photo/2017/08/05/11/16/logo-2582747_640.png" width="100" height="100">
    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS76aVIo4u18ZBAVWU79QkDQ6uvKUjF4leJ7g&usqp=CAU" width="100" height="100">
